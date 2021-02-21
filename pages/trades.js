@@ -53,16 +53,19 @@ export const Trades = () => {
       const pl = profitLoss(trade);
 
       return (
-        <tr key={index} className="text-left">
-          <td className="p-2 px-3">{trade.ticker.toUpperCase()}</td>
-          <td className="p-2 px-3">{trade.entry}</td>
-          <td className="p-2 px-3">{trade.quantity}</td>
-          <td className="p-2 px-3">{trade.exit}</td>
+        <tr key={index} className="text-left border border-gray-200">
+          <td className="px-6 py-2 tracking-wider uppercase">{trade.ticker}</td>
+          <td className="px-6 py-2 tracking-wider uppercase">{trade.entry}</td>
+          <td className="px-6 py-2 tracking-wider uppercase">
+            {trade.quantity}
+          </td>
+          <td className="px-6 py-2 tracking-wider uppercase">{trade.exit}</td>
           <td
-            className="p-2 px-3"
-            className={pl > 0 ? "bg-green-200" : "bg-red-200"}
+            className={`px-6 py-2 tracking-wider uppercase ${
+              pl > 0 ? "bg-green-200" : "bg-red-200"
+            }`}
           >
-            {pl}
+            {pl > 0 ? `+${pl}` : pl}
           </td>
         </tr>
       );
@@ -74,12 +77,8 @@ export const Trades = () => {
   };
 
   return (
-    // Entry form for trade
-    // Table displaying trades for the day
-    // Account value at the start and current value
-    //
-    <>
-      <table className="table-auto rounded-lg whitespace-no-wrap bg-white table-striped relative">
+    <div className="flex ">
+      <table className="table-auto rounded-lg whitespace-no-wrap bg-white table-striped relative ml-10 mt-10">
         <thead>
           <tr className="text-left border-b border-gray-200 bg-gray-100">
             {tableHeaders()}
@@ -87,7 +86,15 @@ export const Trades = () => {
         </thead>
         <tbody>{tableRows()}</tbody>
       </table>
-    </>
+      <div className="ml-10 mt-10">
+        <button
+          type="button"
+          className="bg-white sticky top-0 border border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
+        >
+          Add
+        </button>
+      </div>
+    </div>
   );
 };
 
