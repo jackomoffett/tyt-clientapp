@@ -15,10 +15,10 @@ export const Navbar = () => {
               </span>
             </a>
           </Link>
-          <Link href="/record">
+          <Link href="/trades">
             <a className="group p-5 w-full">
               <span className="flex align-center text-xl w-full tracking-wide p-3 group-hover:bg-gray-100 rounded-lg">
-                Record
+                Trades
               </span>
             </a>
           </Link>

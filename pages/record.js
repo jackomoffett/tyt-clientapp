@@ -1,9 +1,9 @@
-function Record() {
+export const Record = () => {
   return (
     <div>
       <h2>Lol</h2>
     </div>
   );
-}
+};
 
 export default Record;
