@@ -4,34 +4,17 @@ import { Table, Row, Cell } from "../components";
 export const Trades = () => {
   const [headers, setHeaders] = useState([
     "ticker",
-    "entry",
     "quantity",
-    "exit",
+    "price",
+    "position",
+    "datetime",
   ]);
   const [trades, setTrades] = useState([
     {
-      ticker: "amd",
-      entry: 80,
-      exit: 82,
-      quantity: 20,
-    },
-    {
-      ticker: "nio",
-      entry: 60,
-      exit: 32,
-      quantity: 20,
-    },
-    {
-      ticker: "tsla",
-      entry: 100,
-      exit: 95,
-      quantity: 20,
-    },
-    {
-      ticker: "gme",
-      entry: 60,
-      exit: 400,
+      ticker: "cciv",
       quantity: 10,
+      price: 55,
+      datetime: Date.now(),
     },
   ]);
 
@@ -54,9 +37,10 @@ export const Trades = () => {
       return (
         <Row key={index}>
           <Cell>{trade.ticker}</Cell>
-          <Cell>{trade.entry}</Cell>
           <Cell>{trade.quantity}</Cell>
-          <Cell>{trade.exit}</Cell>
+          <Cell>{trade.price}</Cell>
+          <Cell>position</Cell>
+          <Cell>{trade.datetime}</Cell>
           {/* <td
             className={`px-6 py-2 tracking-wider uppercase ${
               pl > 0 ? "bg-green-200" : "bg-red-200"
