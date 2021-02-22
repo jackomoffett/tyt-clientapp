@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Table, Row, Cell } from "../components";
 
 export const Trades = () => {
   const [headers, setHeaders] = useState([
@@ -6,7 +7,6 @@ export const Trades = () => {
     "entry",
     "quantity",
     "exit",
-    "pl",
   ]);
   const [trades, setTrades] = useState([
     {
@@ -50,24 +50,21 @@ export const Trades = () => {
 
   const tableRows = () => {
     return trades.map((trade, index) => {
-      const pl = profitLoss(trade);
-
+      //   const pl = profitLoss(trade);
       return (
-        <tr key={index} className="text-left border border-gray-200">
-          <td className="px-6 py-2 tracking-wider uppercase">{trade.ticker}</td>
-          <td className="px-6 py-2 tracking-wider uppercase">{trade.entry}</td>
-          <td className="px-6 py-2 tracking-wider uppercase">
-            {trade.quantity}
-          </td>
-          <td className="px-6 py-2 tracking-wider uppercase">{trade.exit}</td>
-          <td
+        <Row key={index}>
+          <Cell>{trade.ticker}</Cell>
+          <Cell>{trade.entry}</Cell>
+          <Cell>{trade.quantity}</Cell>
+          <Cell>{trade.exit}</Cell>
+          {/* <td
             className={`px-6 py-2 tracking-wider uppercase ${
               pl > 0 ? "bg-green-200" : "bg-red-200"
             }`}
           >
             {pl > 0 ? `+${pl}` : pl}
-          </td>
-        </tr>
+          </td> */}
+        </Row>
       );
     });
   };
@@ -78,14 +75,7 @@ export const Trades = () => {
 
   return (
     <div className="flex ">
-      <table className="table-auto rounded-lg whitespace-no-wrap bg-white table-striped relative ml-10 mt-10">
-        <thead>
-          <tr className="text-left border-b border-gray-200 bg-gray-100">
-            {tableHeaders()}
-          </tr>
-        </thead>
-        <tbody>{tableRows()}</tbody>
-      </table>
+      <Table tableHeaders={tableHeaders()} tableRows={tableRows()} />
       <div className="ml-10 mt-10">
         <button
           type="button"
