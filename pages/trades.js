@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import { Table, Row, Cell } from "../components";
+import { useForm } from "react-hook-form";
 
 export const Trades = () => {
+  const { register, handleSubmit, watch, errors } = useForm();
   const [headers, setHeaders] = useState([
     "ticker",
     "quantity",
     "price",
     "position",
-    "datetime",
+    "time",
   ]);
   const [trades, setTrades] = useState([
     {
       ticker: "cciv",
       quantity: 10,
       price: 55,
-      datetime: Date.now(),
     },
   ]);
+
+  const onSubmit = (data) => console.log(data);
 
   const tableHeaders = () => {
     return headers.map((header, index) => {
@@ -34,20 +37,22 @@ export const Trades = () => {
   const tableRows = () => {
     return trades.map((trade, index) => {
       //   const pl = profitLoss(trade);
+      {
+        /* <td
+            className={`px-6 py-2 tracking-wider uppercase ${
+              pl > 0 ? "bg-green-200" : "bg-red-200"
+            }`}
+          >
+            {pl > 0 ? `+${pl}` : pl}
+          </td> */
+      }
       return (
         <Row key={index}>
           <Cell>{trade.ticker}</Cell>
           <Cell>{trade.quantity}</Cell>
           <Cell>{trade.price}</Cell>
           <Cell>position</Cell>
-          <Cell>{trade.datetime}</Cell>
-          {/* <td
-            className={`px-6 py-2 tracking-wider uppercase ${
-              pl > 0 ? "bg-green-200" : "bg-red-200"
-            }`}
-          >
-            {pl > 0 ? `+${pl}` : pl}
-          </td> */}
+          <Cell>2:35</Cell>
         </Row>
       );
     });
@@ -68,6 +73,15 @@ export const Trades = () => {
           Add
         </button>
       </div>
+      <form className="flex" onSubmit={handleSubmit(onSubmit)}>
+        <input name="ticker" defaultValue="ticker" ref={register} />
+        <input name="quantity" defaultValue="quantity" ref={register} />
+        <input name="price" defaultValue="price" ref={register} />
+        <input name="time" defaultValue="time" ref={register} />
+        <input name="exampleRequired" ref={register} />
+
+        <input type="submit" />
+      </form>
     </div>
   );
 };
