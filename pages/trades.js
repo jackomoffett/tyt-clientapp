@@ -26,7 +26,7 @@ export const Trades = () => {
       return (
         <th
           key={index}
-          className="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
+          className="bg-gray-100 sticky top-0 border-b border-r border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
         >
           {header}
         </th>
@@ -63,25 +63,49 @@ export const Trades = () => {
   };
 
   return (
-    <div className="flex ">
+    <div className="flex flex-col ml-10 mt-10">
+      <div className="">
+        <form className="flex" onSubmit={handleSubmit(onSubmit)}>
+          <input
+            className="border py-2 px-3 text-grey-darkest"
+            name="ticker"
+            defaultValue="ticker"
+            ref={register}
+          />
+          <input
+            className="border py-2 px-3 text-grey-darkest"
+            name="quantity"
+            defaultValue="quantity"
+            ref={register}
+          />
+          <input
+            className="border py-2 px-3 text-grey-darkest"
+            name="price"
+            defaultValue="price"
+            ref={register}
+          />
+          <input
+            className="border py-2 px-3 text-grey-darkest"
+            name="time"
+            defaultValue="time"
+            ref={register}
+          />
+
+          <input
+            type="submit"
+            className="bg-white sticky top-0 border border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
+          />
+        </form>
+      </div>
       <Table tableHeaders={tableHeaders()} tableRows={tableRows()} />
-      <div className="ml-10 mt-10">
+      {/* <div className="ml-10 mt-10">
         <button
           type="button"
           className="bg-white sticky top-0 border border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
         >
           Add
         </button>
-      </div>
-      <form className="flex" onSubmit={handleSubmit(onSubmit)}>
-        <input name="ticker" defaultValue="ticker" ref={register} />
-        <input name="quantity" defaultValue="quantity" ref={register} />
-        <input name="price" defaultValue="price" ref={register} />
-        <input name="time" defaultValue="time" ref={register} />
-        <input name="exampleRequired" ref={register} />
-
-        <input type="submit" />
-      </form>
+      </div> */}
     </div>
   );
 };
