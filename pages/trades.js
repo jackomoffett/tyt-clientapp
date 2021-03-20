@@ -69,25 +69,25 @@ export const Trades = () => {
           <input
             className="border py-2 px-3 text-grey-darkest"
             name="ticker"
-            defaultValue="ticker"
+            placeholder="ticker"
             ref={register}
           />
           <input
             className="border py-2 px-3 text-grey-darkest"
             name="quantity"
-            defaultValue="quantity"
+            placeholder="quantity"
             ref={register}
           />
           <input
             className="border py-2 px-3 text-grey-darkest"
             name="price"
-            defaultValue="price"
+            placeholder="price"
             ref={register}
           />
           <input
             className="border py-2 px-3 text-grey-darkest"
             name="time"
-            defaultValue="time"
+            placeholder="time"
             ref={register}
           />
 

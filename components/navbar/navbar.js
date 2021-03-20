@@ -3,7 +3,7 @@ import Link from "next/link";
 export const Navbar = () => {
   return (
     <>
-      <nav className="flex flex-col w-44 h-screen p3 border-solid border-r-2 border-light-blue-500">
+      <nav className="flex flex-col w-55 h-screen p3 border-solid border-r-2 border-light-blue-500">
         <div className="w-full p-5">
           <h2 className="text-xl font-bold tracking-wide">TYT</h2>
         </div>
@@ -19,6 +19,13 @@ export const Navbar = () => {
             <a className="group p-5 w-full">
               <span className="flex align-center text-xl w-full tracking-wide p-3 group-hover:bg-gray-100 rounded-lg">
                 Trades
+              </span>
+            </a>
+          </Link>
+          <Link href="/fundamentals">
+            <a className="group p-5 w-full">
+              <span className="flex align-center text-xl w-full tracking-wide p-3 group-hover:bg-gray-100 rounded-lg">
+                Fundamentals
               </span>
             </a>
           </Link>
