@@ -8,7 +8,7 @@ export const Fundamentals = () => {
 
   return (
     <div>
-      <h1>Stock fundamentals</h1>
+      <h1>Search fundamentals</h1>
       <div className="flex">
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
