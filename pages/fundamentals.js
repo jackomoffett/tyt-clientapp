@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 export const Fundamentals = () => {
   const { register, handleSubmit, watch, errors } = useForm();
+  const [companyOverview, setCompanyOverview] = useState();
+  const [companies, setCompanies] = useState(null);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async ({ search }) => {
+    const response = await axios.get(`/api/fundamentals/search/${search}`);
+    setCompanies(response.data.data);
+
+    console.log(companies);
+  };
 
   return (
     <div>
@@ -22,6 +30,11 @@ export const Fundamentals = () => {
             className="bg-white sticky top-0 border border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
           />
         </form>
+        {companies != null
+          ? companies.map((company, index) => {
+              return <div key={index}>{company.symbol}</div>;
+            })
+          : null}
       </div>
     </div>
   );
