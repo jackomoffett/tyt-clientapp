@@ -10,8 +10,6 @@ export const Fundamentals = () => {
   const onSubmit = async ({ search }) => {
     const response = await axios.get(`/api/fundamentals/search/${search}`);
     setCompanies(response.data.data);
-
-    console.log(companies);
   };
 
   return (
