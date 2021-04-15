@@ -5,3 +5,6 @@ export { Cell } from "./table/cell.js";
 
 // Navbar
 export { Navbar } from "./navbar/navbar.js";
+
+//Searchbar
+export { Searchbar } from "./searchbar/searchbar.js";
