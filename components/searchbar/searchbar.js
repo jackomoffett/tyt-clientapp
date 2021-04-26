@@ -2,24 +2,40 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Link from "next/link";
+import useRouter from "next/router"
 
 export const Searchbar = () => {
   const { register, handleSubmit, watch, errors, reset } = useForm();
+  const router = useRouter;
   const [companies, setCompanies] = useState(null);
 
-  const onSubmit = async ({ search }) => {
-    const response = await axios.get(`/api/fundamentals/search/${search}`);
-    setCompanies(response.data.data);
+  const onUserInput = async ({ search }) => {
+    if (search) {
+      const response = await axios.get(`/api/fundamentals/search/${search}`);
+      setCompanies(response.data.data);
+    } else {
+      setCompanies(null)
+    }
   };
+
+  const onSubmit = e => {
+    console.log(e)
+    e.preventDefault();
+    setCompanies(null);
+    router.push(`/companies/${e.target.value}`)
+  }
+
   return (
     <>
       <div className="flex">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <input
             className="border py-2 px-3 text-grey-darkest w-50"
             name="search"
             placeholder="Search"
+            autoComplete="off"
             ref={register}
+            onKeyUp={handleSubmit(onUserInput)}
           />
           {/* <input
             type="submit"
@@ -30,11 +46,14 @@ export const Searchbar = () => {
       <div className="flex flex-col">
         {companies != null
           ? companies.map((company, index) => (
-              <li className="list-none flex w-50" key={index}>
+              <li onClick={e => setCompanies(null)} className="list-none flex border hover:bg-gray-50 cursor-pointer" key={index}>
                 <Link href={`/companies/${encodeURIComponent(company.symbol)}`}>
-                  <a className="border py-2 px-3 text-grey-darkest w-50">
-                    {company.symbol}
-                  </a>
+                  <div className="flex py-2 px-3 w-full">
+                    <a className="text-grey-darkest mr-4 w-32" >
+                      {company.symbol}
+                    </a>
+                    <p className="text-gray-500">{company.name}</p>
+                  </div>
                 </Link>
               </li>
             ))
