@@ -27,17 +27,14 @@ export const Searchbar = () => {
   //   }
   // }, [query]);
 
-  useEffect(async () => {
-    console.log(query);
-    fetch(
-      `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.AV_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((response) => console.log(response["bestMatches"]));
-  }, [query]);
+  // useEffect(async () => {
+  //   console.log(query);
+  //   fetch("/api/company")
+  //     .then((res) => res.json())
+  //     .then((response) => console.log(response));
+  // }, [query]);
 
   const onSubmit = (e) => {
-    // console.log(e);
     e.preventDefault();
     setCompanies(null);
     router.push(`/companies/${query}`);
@@ -54,10 +51,6 @@ export const Searchbar = () => {
             autoComplete="off"
             ref={register}
           />
-          {/* <input
-            type="submit"
-            className="bg-white sticky top-0 border border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
-          /> */}
         </form>
       </div>
       <div className="flex flex-col">
