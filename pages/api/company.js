@@ -20,10 +20,10 @@ async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
   fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&keywords=amd&apikey=${process.env.AV_API_KEY}`
+    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=amd&apikey=${process.env.AV_API_KEY}`
   )
     .then((res) => res.json())
-    .then((response) => res.json(response["bestMatches"]));
+    .then((response) => res.json(response));
 }
 
 export default handler;

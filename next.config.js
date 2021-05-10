@@ -7,4 +7,7 @@ module.exports = {
       },
     ];
   },
+  env: {
+    AV_API_KEY: "3SBECYWFZ052WOPE",
+  },
 };
