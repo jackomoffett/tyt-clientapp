@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Searchbar from "../../components/searchbar/searchbar.js";
 
-const Company = () => {
+const Overview = () => {
   const router = useRouter();
   const { symbol } = router.query;
 
   useEffect(async () => {
-    fetch("/api/company")
-      .then((res) => res.json())
-      .then((response) => console.log(response));
-  }, []);
-
-  console.log(symbol);
+    if (symbol) {
+      await fetch(`/api/overview/${symbol}`)
+        .then((res) => res.json())
+        .then((response) => console.log(response));
+    }
+  });
 
   return (
     <div className="flex flex-col">
@@ -22,4 +22,4 @@ const Company = () => {
   );
 };
 
-export default Company;
+export default Overview;

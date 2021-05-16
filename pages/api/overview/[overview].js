@@ -19,8 +19,10 @@ function runMiddleware(req, res, fn) {
 async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
+  const { overview } = req.query;
+
   fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=amd&apikey=${process.env.AV_API_KEY}`
+    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${overview}&apikey=${process.env.AV_API_KEY}`
   )
     .then((res) => res.json())
     .then((response) => res.json(response));
