@@ -6,11 +6,23 @@ const Overview = () => {
   const router = useRouter();
   const { symbol } = router.query;
 
+  const [overview, setOverview] = useState(null);
+  const [earnigs, setEarnings] = useState(null);
+
   useEffect(async () => {
     if (symbol) {
-      await fetch(`/api/overview/${symbol}`)
+      // await fetch(`/api/overview/${symbol}`)
+      //   .then((res) => res.json())
+      //   .then((json) => {
+      //     console.log(json);
+      //   });
+      await fetch(`/api/earnings/${symbol}`)
         .then((res) => res.json())
-        .then((response) => console.log(response));
+        .then((json) => {
+          console.log(
+            json.quoteSummary.result[0].earnings.earningsChart.quarterly
+          );
+        });
     }
   });
 
